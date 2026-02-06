@@ -1,13 +1,19 @@
 async function main() {
-  const MyNFT = await ethers.getContractFactory("MyNFT");
-  const nft = await MyNFT.deploy();
+  const Token = await ethers.getContractFactory("RewardToken");
+  const token = await Token.deploy();
+  await token.waitForDeployment();
 
-  await nft.waitForDeployment();
+  const Crowdfunding = await ethers.getContractFactory("Crowdfunding");
+  const crowdfunding = await Crowdfunding.deploy(await token.getAddress());
+  await crowdfunding.waitForDeployment();
 
-  console.log("MyNFT deployed to:", await nft.getAddress());
+  await token.transferOwnership(await crowdfunding.getAddress());
+
+  console.log("RewardToken:", await token.getAddress());
+  console.log("Crowdfunding:", await crowdfunding.getAddress());
 }
 
 main().catch((error) => {
   console.error(error);
-  process.exit(1);
+  process.exitCode = 1;
 });
