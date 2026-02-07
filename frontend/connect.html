@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Connect Wallet</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h1>Connect your wallet</h1>
+    <p class="subtitle">MetaMask is used as authentication</p>
+
+    <button class="btn" onclick="connectWallet()">
+      Connect MetaMask
+    </button>
+
+    <p id="status"></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.8.1/dist/ethers.umd.min.js"></script>
+  <script src="wallet.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Engineer Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h1>Engineer Dashboard</h1>
+    <p class="subtitle">Create your EV project idea</p>
+
+    <div class="card">
+      <h2>Create Campaign</h2>
+
+      <input id="title" placeholder="Project title" />
+      <input id="goal" placeholder="Funding goal (ETH)" />
+      <input id="duration" placeholder="Duration (seconds)" />
+
+      <button class="btn" onclick="createCampaign()">
+        Create Campaign
+      </button>
+
+      <label>Project Image</label>
+        <input type="file" id="image" accept="image/*" />
+
+
+      <p id="status"></p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.8.1/dist/ethers.umd.min.js"></script>
+  <script src="engineer.js"></script>
+</body>
+</html>
