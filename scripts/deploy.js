@@ -1,15 +1,23 @@
-async function main() {
-  const Token = await ethers.getContractFactory("RewardToken");
-  const token = await Token.deploy();
-  await token.waitForDeployment();
+const hre = require("hardhat");
 
-  const Crowdfunding = await ethers.getContractFactory("Crowdfunding");
-  const crowdfunding = await Crowdfunding.deploy(await token.getAddress());
+async function main() {
+  const RewardToken = await hre.ethers.getContractFactory("RewardToken");
+  const rewardToken = await RewardToken.deploy();
+  await rewardToken.waitForDeployment();
+
+  const Crowdfunding = await hre.ethers.getContractFactory("Crowdfunding");
+  const crowdfunding = await Crowdfunding.deploy(
+    await rewardToken.getAddress()
+  );
   await crowdfunding.waitForDeployment();
 
-  await token.transferOwnership(await crowdfunding.getAddress());
 
-  console.log("RewardToken:", await token.getAddress());
+  await rewardToken.transferOwnership(
+    await crowdfunding.getAddress()
+  );
+
+
+  console.log("RewardToken:", await rewardToken.getAddress());
   console.log("Crowdfunding:", await crowdfunding.getAddress());
 }
 
